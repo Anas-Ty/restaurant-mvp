@@ -12,6 +12,8 @@ from .serializers import OrderSerializer, OrderCreateSerializer
 @permission_classes([AllowAny])
 def create_order(request, qr_code):
     """Create order from customer using QR code"""
+    print(f"[Django][orders.views] create_order called with qr_code={qr_code}, REMOTE_ADDR={request.META.get('REMOTE_ADDR')}, payload={request.data}")
+    
     try:
         table = Table.objects.select_related('restaurant').get(
             qr_code=qr_code,

@@ -27,12 +27,13 @@ SECRET_KEY = 'django-insecure-^!k)w(_g*a&3girijj0**v#dz&9yz@!(_q+(%c_hczncqz4_d-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0','192.168.1.101','192.168.1.103']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,14 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders',
     'restaurants',
     'orders',
     'menu',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware", 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +57,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",   # Vite default
+    "http://127.0.0.1:5173",
+    "http://localhost:8080",   # if your app runs on :8080 (screenshot shows localhost:8080)
+    "http://127.0.0.1:8000",   # optional if you test from same host
+    # your phone/dev machine LAN URLs:
+    "http://192.168.1.103:5173",
+    "http://192.168.1.103:8000",
+]
+# If you need to allow cookies/auth:
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'restaurant_backend.urls'
 
@@ -153,15 +164,9 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
 }
 
-# CORS Configuration
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",  # Vite default port
-    "http://127.0.0.1:5173",
-]
 
-CORS_ALLOW_CREDENTIALS = True
+
+
 
 # Static files
 STATIC_URL = '/static/'

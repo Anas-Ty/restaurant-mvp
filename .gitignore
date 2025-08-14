@@ -1,0 +1,33 @@
+# Next.js specific ignores
+.next/
+out/
+node_modules/
+.DS_Store
+
+# Virtual environment
+venv/
+
+# Environment variables (sensitive data)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Django specific ignores
+__pycache__/
+*.pyc
+db.sqlite3
+/static
+media/
+
+# IDE/Editor specific ignores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and other files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
